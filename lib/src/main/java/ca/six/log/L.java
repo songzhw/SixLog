@@ -37,20 +37,22 @@ public class L {
 
     public static void trace() {
         StackTraceElement[] stacks = new Throwable().getStackTrace();
+        System.out.println("szw stack = " + stacks.length);
         StringBuilder sb = new StringBuilder();
 
         for (StackTraceElement item : stacks) {
             String className = item.getClassName();
             String methodName = item.getMethodName();
             int lineNumber = item.getLineNumber();
-            sb.append("szw: ");
+            sb.append("\nszw: ");
             sb.append(className);
             sb.append(" || ");
             sb.append(methodName);
             sb.append("(");
             sb.append(lineNumber);
-            sb.append(")\n");
+            sb.append(")");
         }
+        Log.d(tag, sb.toString());
     }
 }
 
