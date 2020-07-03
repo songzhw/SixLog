@@ -9,21 +9,19 @@ import android.util.Log;
 public class L {
     public static String tag = "szw";
 
-    public static void d(String msg){
+    public static void d(String msg) {
         StackTraceElement[] traces = Thread.currentThread().getStackTrace();
-        if(traces == null || traces.length < 8){
-            Log.d(tag,"(normal) "+msg);
+        if (traces == null || traces.length < 8) {
+            Log.d(tag, "(normal) " + msg);
             return;
         }
 
         StringBuilder sb = new StringBuilder();
         StackTraceElement element = traces[3];
 
-        String classWholeName = element.getClassName();
+        String classWholeName = element.getClassName(); //=> ca.six.demo.MainActivity$onCreate$1
         String className = classWholeName.substring(classWholeName.lastIndexOf(".") + 1);
 
-
-//        for(StackTraceElement element : traces) {
         sb.append(className);
         sb.append(" || ");
         sb.append(element.getMethodName());
@@ -32,10 +30,17 @@ public class L {
         sb.append(".java:");
         sb.append(element.getLineNumber());
         sb.append(")\n");
-//        }
         sb.append(msg);
 
-        Log.d(tag, sb.toString());
+        if(BuildConfig.DEBUG) {
+            Log.d(tag, sb.toString());
+        }
     }
 }
 
+/*
+ 现在问题
+ 1. 新版AndroidStudio中, 日志不再是可点击的
+ 2. MainActivity$onCreate$1这样的, 能否优化下, 比如显示类包之类的
+ 3. 新加traceFunction()
+ */
