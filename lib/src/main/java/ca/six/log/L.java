@@ -47,6 +47,13 @@ public class L {
             String className = item.getClassName();
             String methodName = item.getMethodName();
             int lineNumber = item.getLineNumber();
+
+            // 再往后就是Handler.dispatchMessage(), ActivitiyThread.main(), ZygoteInit.main()等方法, 就可以略过了
+            boolean threshold = className.equals("android.os.Handler") && lineNumber == 107;
+            if (threshold) {
+                break;
+            }
+
             sb.append("\nszw: ");
             sb.append(className);
             sb.append(" || ");

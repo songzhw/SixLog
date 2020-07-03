@@ -1,7 +1,6 @@
 package ca.six.demo
 
 import android.os.AsyncTask
-import ca.six.log.L
 
 class SomeWorker {
     fun doIt() {
@@ -11,7 +10,7 @@ class SomeWorker {
             }
 
             override fun onPostExecute(result: Unit?) {
-                L.trace("AsycTask")
+                ThirdMan().three()
             }
         }
 
