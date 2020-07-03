@@ -35,13 +35,15 @@ public class L {
         Log.d(tag, sb.toString());
     }
 
-    public static void trace() {
+    public static void trace(String prefix) {
         StackTraceElement[] stacks = Thread.currentThread().getStackTrace();
         System.out.println("szw stack = " + stacks.length);
         StringBuilder sb = new StringBuilder();
+        sb.append(prefix);
 
-        // 第0,1项是Thread的信息, 第2项是L.trace(), 第三项开始是正式内容, 如
-        for (StackTraceElement item : stacks) {
+        // 第0,1项是Thread的信息, 第2项是L.trace(), 第三项开始是正式内容, 如SomeHelper || work(7)
+        for (int i = 3; i < stacks.length; i++) {
+            StackTraceElement item = stacks[i];
             String className = item.getClassName();
             String methodName = item.getMethodName();
             int lineNumber = item.getLineNumber();
