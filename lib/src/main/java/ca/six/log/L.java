@@ -59,6 +59,8 @@ public class L {
             sb.append(" || ");
             sb.append(methodName);
             sb.append("(");
+            sb.append(item.getFileName());
+            sb.append(":");
             sb.append(lineNumber);
             sb.append(")");
         }
@@ -73,5 +75,6 @@ public class L {
  2. x MainActivity$onCreate$1这样的, 能否优化下, 比如显示类包之类的
         : 失败. 因为StackTraceElement并没有提供superclass name这样的getter
  3. ✔ 新加traceFunction()
- 4. traceFunction()里新加可点击
+ 4. ✔ traceFunction()里新加可点击
+        : 而且它会只能在应用的类才能点击. 像Actiivty, AsyncTask这些系统类是不能点击的
  */
