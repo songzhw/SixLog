@@ -13,6 +13,8 @@ class MainActivity : AppCompatActivity() {
         tvMain.setOnClickListener {
             println("szw click")
             L.d("hello SixLog")
+
+            SomeHelper.work()
         }
     }
 }
