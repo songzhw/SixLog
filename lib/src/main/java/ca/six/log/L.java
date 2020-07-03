@@ -26,8 +26,8 @@ public class L {
         sb.append(" || ");
         sb.append(element.getMethodName());
         sb.append("() || ( ");
-        sb.append(className);
-        sb.append(".java:");
+        sb.append(element.getFileName()); //现在可能是java, 也可能是kt文件
+        sb.append(":");
         sb.append(element.getLineNumber());
         sb.append(")\n");
         sb.append(msg);
@@ -68,7 +68,10 @@ public class L {
 
 /*
  现在问题
- 1. 新版AndroidStudio中, 日志不再是可点击的
- 2. MainActivity$onCreate$1这样的, 能否优化下, 比如显示类包之类的
- 3. 新加traceFunction()
+ 1. ✔ 新版AndroidStudio中, 日志不再是可点击的
+        : 点击失败. 是因为现在我用于kt文件中, 但L.d()中仍是写死了.java文件, 所以找不到
+ 2. x MainActivity$onCreate$1这样的, 能否优化下, 比如显示类包之类的
+        : 失败. 因为StackTraceElement并没有提供superclass name这样的getter
+ 3. ✔ 新加traceFunction()
+ 4. traceFunction()里新加可点击
  */
