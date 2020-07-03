@@ -11,10 +11,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         tvMain.setOnClickListener {
-            println("szw click")
             L.d("hello SixLog")
-
             SomeHelper.work()
         }
+
+        L.trace()
     }
 }

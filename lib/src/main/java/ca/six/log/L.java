@@ -36,10 +36,11 @@ public class L {
     }
 
     public static void trace() {
-        StackTraceElement[] stacks = new Throwable().getStackTrace();
+        StackTraceElement[] stacks = Thread.currentThread().getStackTrace();
         System.out.println("szw stack = " + stacks.length);
         StringBuilder sb = new StringBuilder();
 
+        // 第0,1项是Thread的信息, 第2项是L.trace(), 第三项开始是正式内容, 如
         for (StackTraceElement item : stacks) {
             String className = item.getClassName();
             String methodName = item.getMethodName();
